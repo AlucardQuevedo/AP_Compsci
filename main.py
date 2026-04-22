@@ -46,7 +46,9 @@ for i in range (0,25,5): #goes (start,stop,step)
 
 
 #Asking For Wager and Diff 
+Money=100
 amountWager= int(input("How much do you want to wager: "))
+Money=Money-amountWager
 difficulty= int(input("How difficult do you want it 1-20?"))
 difficultyForMult = difficulty * 0.25
 multiplier=1.1+difficultyForMult
@@ -67,7 +69,15 @@ while goAgain=="Y":
         column=int(input("Please pick a column: "))
         if check(hiddenGridFR, row, column) == True:
             amountWager= amountWager * multiplier
+            print("You earned $", amountWager,)
+            goAgain==input("Do you want to keep going (Y/N)")
+        if check(hiddenGridFR, row, column == False):
+            print ("You blew up...")
+            print ("You have now only have $", Money)
+        
             
+            
+
     
 
 
