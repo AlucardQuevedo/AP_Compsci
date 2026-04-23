@@ -65,6 +65,7 @@ hiddenGridFR= changeGrid (hiddenGrid,difficulty)
 #underContruction
 goAgain="Y"
 
+
 choice1=input ("Do you want to do choose or random: ")
 
 if choice1=="choose":
@@ -85,7 +86,11 @@ if choice1=="choose":
             print ("\n\n\nYou blew up...")
             print ("You have now only have $", Money)
             displayGrid (hiddenGridFR)
-            goAgain="N"
+            goAgain="L"
+    if goAgain=="N":
+        Money=Money+amountWager
+        print ("You made $",amountWager, "Now you have a total of $", Money)
+
 
         
             
