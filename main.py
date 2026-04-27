@@ -43,9 +43,18 @@ def displayGrid(gridDisplayed):
 
 
 
+def randoms(timesGoing,wager,multi,hiddenGridssss,shownGridssss):
+    RandomChosenSpot=random.sample(range(0,24),timesGoing)
+    while RandomChosenSpot in range (timesGoing):
+        if hiddenGridssss[RandomChosenSpot]=="$":
+            wager=wager*multi
+        elif hiddenGridssss[RandomChosenSpot]=="💣":
+            return 0
+        
+            
+            
 
-def randoms(timesGoing,hiddenGridssss,shownGridssss):
-    RandomChosenSpot=random.sample(range(0,24),5)
+
     
 #Telling Instructions
 
