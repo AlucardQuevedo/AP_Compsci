@@ -45,9 +45,10 @@ def displayGrid(gridDisplayed):
 
 def randoms(timesGoing,wager,multi,hiddenGridssss,shownGridssss):
     indexOfLists=0
-    RandomChosenSpot=random.sample(range(0,24),timesGoing)
-    while RandomChosenSpot in range (timesGoing):
-        if hiddenGridssss[RandomChosenSpot[indexOfLists]]=="$":
+    RandomChosenSpot=random.sample(range(0,25),timesGoing) #timesgoing = 5
+    #Outpit ^ RandomChoseSpot= [1,4,12,21,24]
+    while indexOfLists in range (timesGoing):
+        if hiddenGridssss[RandomChosenSpot[indexOfLists]]=="$": #If hiddengrid[index] = $
             wager=wager*multi
             indexOfLists=indexOfLists+1
         elif hiddenGridssss[RandomChosenSpot[indexOfLists]]=="💣":
@@ -98,7 +99,7 @@ if choice1=="choose":
             print("You earned $", amountWager,)
             shownGrid=updateGrid (hiddenGridFR, shownGrid, row, column)
             displayGrid(shownGrid)
-            goAgain==input("Do you want to keep going (Y/N): ")
+            goAgain=input("Do you want to keep going (Y/N): ")
                 
 
         elif check(hiddenGridFR, row, column == False):
@@ -111,11 +112,13 @@ if choice1=="choose":
         print ("You made $",amountWager, "Now you have a total of $", Money)
 
 elif choice1=="random":
-    amountOfTimes=int("How many times do you want to go?: ")
-    if randoms(amountOfTimes,amountWager,multiplier,hiddenGridFR,shownGrid)==0:
+    amountOfTimes=int(input("How many times do you want to go?: "))
+    randomsOutput= randoms(amountOfTimes,amountWager,multiplier,hiddenGridFR,shownGrid)
+    if randomsOutput==0:
         print ("Sorry You Lost Bro, Now you only have $", Money)
-        
-        
+    else:
+        Money=Money+randomsOutput
+        print ("YOOOO YOU NOW HAVE, $", Money )
 
 
 
