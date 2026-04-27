@@ -40,6 +40,13 @@ def updateGrid (hiddenGridsss, shownGridsss, rowss, columnss):
 def displayGrid(gridDisplayed):
     for i in range (0,25,5): #goes (start,stop,step)
         print(gridDisplayed[i:i+5]) #go from 0->6 but doesn't do 6 only 5
+
+
+
+
+def randoms(timesGoing,hiddenGridssss,shownGridssss):
+    RandomChosenSpot=random.sample(range(0,24),5)
+    
 #Telling Instructions
 
 # EXAMPLE
@@ -90,6 +97,15 @@ if choice1=="choose":
     if goAgain=="N":
         Money=Money+amountWager
         print ("You made $",amountWager, "Now you have a total of $", Money)
+
+elif choice1=="random":
+    amountOfTimes=int("How many times do you want to go?: ")
+    if randoms(1,2,3)==True:
+        yare=1
+
+
+
+
 
 
         
