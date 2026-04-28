@@ -2,18 +2,6 @@ import math
 import random
 
 
-hiddenGrid= ["$","$","$","$","$",
-             "$","$","$","$","$",
-             "$","$","$","$","$",
-             "$","$","$","$","$",
-             "$","$","$","$","$"]
-
-shownGrid= ["x","x","x","x","x",
-            "x","x","x","x","x",
-            "x","x","x","x","x",
-            "x","x","x","x","x",
-            "x","x","x","x","x"]
-
 def changeGrid (hiddenGrids,difficultie):
     indexCount=0
     listOfIndex=random.sample(range (0,24), difficultie) #gets random list 0-24 inclusive and difficulty amount of times
@@ -45,12 +33,15 @@ def displayGrid(gridDisplayed):
 
 def randoms(timesGoing,wager,multi,hiddenGridssss,shownGridssss):
     indexOfLists=0
+    numOfSafeSpots=0
     RandomChosenSpot=random.sample(range(0,25),timesGoing) #timesgoing = 5
     #Outpit ^ RandomChoseSpot= [1,4,12,21,24]
     while indexOfLists in range (timesGoing):
         if hiddenGridssss[RandomChosenSpot[indexOfLists]]=="$": #If hiddengrid[index] = $
             wager=wager*multi
+            numOfSafeSpots=numOfSafeSpots + 1
             indexOfLists=indexOfLists+1
+            
         elif hiddenGridssss[RandomChosenSpot[indexOfLists]]=="💣":
             return 0
     return wager
@@ -72,54 +63,72 @@ print ("You have 100$ to start")
 
 
 #Asking For Wager and Diff 
+keepGoing="Y"
 Money=100
-amountWager= int(input("How much do you want to wager: "))
-Money=Money-amountWager
-difficulty= int(input("How difficult do you want it 1-20?"))
-difficultyForMult = difficulty * 0.25
-multiplier=1.1+difficultyForMult
-hiddenGridFR= changeGrid (hiddenGrid,difficulty)
-#testing displayGrid(hiddenGridFR)
+while Money > 0 and keepGoing=="Y": 
+    hiddenGrid= ["$","$","$","$","$",
+             "$","$","$","$","$",
+             "$","$","$","$","$",
+             "$","$","$","$","$",
+             "$","$","$","$","$"]
+
+    shownGrid= ["x","x","x","x","x",
+            "x","x","x","x","x",
+            "x","x","x","x","x",
+            "x","x","x","x","x",
+            "x","x","x","x","x"]
 
 
-#underContruction
-goAgain="Y"
 
 
-choice1=input ("Do you want to do choose or random: ")
+    amountWager= int(input("How much do you want to wager: "))
+    Money=Money-amountWager
+    difficulty= int(input("How difficult do you want it 1-20?"))
+    difficultyForMult = difficulty * 0.25
+    multiplier=1.1+difficultyForMult
+    hiddenGridFR= changeGrid (hiddenGrid,difficulty)
+    #testing displayGrid(hiddenGridFR)
 
-if choice1=="choose":
-    while goAgain=="Y":
-        displayGrid(shownGrid)
-        row=int(input("Please pick a row: "))
-        column=int(input("Please pick a column: "))
 
-        if check(hiddenGridFR, row, column) == True:
-            amountWager= amountWager * multiplier
-            print("You earned $", amountWager,)
-            shownGrid=updateGrid (hiddenGridFR, shownGrid, row, column)
+    #underContruction
+    goAgain="Y"
+
+
+    choice1=input ("Do you want to do choose or random: ")
+
+    if choice1=="choose":
+        while goAgain=="Y":
             displayGrid(shownGrid)
-            goAgain=input("Do you want to keep going (Y/N): ")
-                
+            row=int(input("Please pick a row: "))
+            column=int(input("Please pick a column: "))
 
-        elif check(hiddenGridFR, row, column == False):
-            print ("\n\n\nYou blew up...")
-            print ("You have now only have $", Money)
-            displayGrid (hiddenGridFR)
-            goAgain="L"
-    if goAgain=="N":
-        Money=Money+amountWager
-        print ("You made $",amountWager, "Now you have a total of $", Money)
+            if check(hiddenGridFR, row, column) == True:
+                amountWager= amountWager * multiplier
+                print("You earned $", amountWager,)
+                shownGrid=updateGrid (hiddenGridFR, shownGrid, row, column)
+                displayGrid(shownGrid)
+                goAgain=input("Do you want to keep going (Y/N): ")
+                    
 
-elif choice1=="random":
-    amountOfTimes=int(input("How many times do you want to go?: "))
-    randomsOutput= randoms(amountOfTimes,amountWager,multiplier,hiddenGridFR,shownGrid)
-    if randomsOutput==0:
-        print ("Sorry You Lost Bro, Now you only have $", Money)
-    else:
-        Money=Money+randomsOutput
-        print ("YOOOO YOU NOW HAVE, $", Money )
+            elif check(hiddenGridFR, row, column == False):
+                print ("\n\n\nYou blew up...")
+                print ("You have now only have $", Money)
+                displayGrid (hiddenGridFR)
+                goAgain="L"
+        if goAgain=="N":
+            Money=Money+amountWager
+            print ("You made $",amountWager, "Now you have a total of $", Money)
 
+    elif choice1=="random":
+        amountOfTimes=int(input("How many times do you want to go?: "))
+        randomsOutput= randoms(amountOfTimes,amountWager,multiplier,hiddenGridFR,shownGrid)
+        if randomsOutput==0:
+            print ("Sorry You Lost Bro, Now you only have $", Money)
+        else:
+            Money=Money+randomsOutput
+            print ("YOOOO YOU NOW HAVE, $", Money )
+    keepGoing = input ("Do you want to keep wagering (Y/N): ")
+print ("THANK YOU FOR PLAYING, YOU ENDED WITH $", Money)
 
 
 
