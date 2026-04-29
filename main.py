@@ -39,9 +39,7 @@ def randoms(timesGoing,wager,multi,hiddenGridssss,shownGridssss):
     while indexOfLists in range (timesGoing):
         if hiddenGridssss[RandomChosenSpot[indexOfLists]]=="$": #If hiddengrid[index] = $
             wager=wager*multi
-            numOfSafeSpots=numOfSafeSpots + 1
             indexOfLists=indexOfLists+1
-            
         elif hiddenGridssss[RandomChosenSpot[indexOfLists]]=="💣":
             return 0
     return wager
