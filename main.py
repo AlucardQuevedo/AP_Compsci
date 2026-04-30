@@ -26,18 +26,18 @@ def updateGrid (hiddenGridsss, shownGridsss, rowss, columnss):
 
 
 def displayGrid(gridDisplayed):
-    for i in range (0,25,5): #goes (start,stop,step)
-        print(gridDisplayed[i:i+5]) #go from 0->6 but doesn't do 6 only 5
+    for i in range (0,25,5):
+        print(gridDisplayed[i:i+5]) 
 
 
 
 def randoms(timesGoing,wager,multi,hiddenGridssss,shownGridssss):
     indexOfLists=0
     numOfSafeSpots=0
-    RandomChosenSpot=random.sample(range(0,25),timesGoing) #timesgoing = 5
-    #Outpit ^ RandomChoseSpot= [1,4,12,21,24]
+    RandomChosenSpot=random.sample(range(0,25),timesGoing) 
+    
     while indexOfLists in range (timesGoing):
-        if hiddenGridssss[RandomChosenSpot[indexOfLists]]=="$": #If hiddengrid[index[index]] = $
+        if hiddenGridssss[RandomChosenSpot[indexOfLists]]=="$":
             wager=wager*multi
             shownGridssss[RandomChosenSpot[indexOfLists]]=hiddenGridssss[RandomChosenSpot[indexOfLists]]
             displayGrid(shownGridssss)
@@ -49,7 +49,7 @@ def randoms(timesGoing,wager,multi,hiddenGridssss,shownGridssss):
         elif hiddenGridssss[RandomChosenSpot[indexOfLists]]=="💣":
             return 0
     return wager
-        
+
             
             
 
@@ -69,18 +69,18 @@ print ("You have 100$ to start")
 #Asking For Wager and Diff 
 keepGoing="Y"
 Money=100
-while Money > 0 and keepGoing=="Y": 
-    hiddenGrid= ["$","$","$","$","$",
-             "$","$","$","$","$",
-             "$","$","$","$","$",
-             "$","$","$","$","$",
-             "$","$","$","$","$"]
-
+while Money > 0 and keepGoing=="Y":
     shownGrid= ["x","x","x","x","x",
             "x","x","x","x","x",
             "x","x","x","x","x",
             "x","x","x","x","x",
             "x","x","x","x","x"]
+     
+    hiddenGrid= ["$","$","$","$","$",
+             "$","$","$","$","$",
+             "$","$","$","$","$",
+             "$","$","$","$","$",
+             "$","$","$","$","$"]
 
 
 
@@ -91,10 +91,9 @@ while Money > 0 and keepGoing=="Y":
     difficultyForMult = difficulty * 0.25
     multiplier=1.1+difficultyForMult
     hiddenGridFR= changeGrid (hiddenGrid,difficulty)
-    #testing displayGrid(hiddenGridFR)
+   
 
 
-    #underContruction
     goAgain="Y"
 
 
